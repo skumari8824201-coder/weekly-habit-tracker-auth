@@ -1,144 +1,190 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     background: linear-gradient(135deg, #667eea, #764ba2);
     min-height: 100vh;
+    transition: background 0.4s ease, color 0.3s ease;
+}
+
+/* DARK MODE */
+body.dark {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+}
+
+/* MAIN CARD CONTAINER */
+.auth-container,
+.dashboard {
+    max-width: 480px;
+    margin: 70px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 22px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    animation: fadeIn 0.6s ease;
     transition: 0.3s ease;
 }
 
-.dark {
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-}
-
-.auth-container, .dashboard {
-    max-width: 420px;
-    margin: 60px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    animation: fadeIn 0.6s ease;
-}
-
-.dark .auth-container,
-.dark .dashboard {
+body.dark .auth-container,
+body.dark .dashboard {
     background: #1e293b;
-    color: white;
 }
 
-/* Updated Header Styling */
+/* MAIN TITLE */
+.main-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+/* TOP ACTION BAR */
 .top-bar {
     display: flex;
-    flex-direction: column; /* Stacks items vertically */
-    align-items: center;    /* Centers items horizontally */
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.top-bar h2 {
-    margin: 0 0 15px 0;    /* Space between title and buttons */
-    font-size: 1.5rem;
-}
-
-.header-actions {
-    display: flex;
-    gap: 10px;
-    width: 100%;
     justify-content: center;
-}
-
-/* Action buttons (Moon/Logout) usually need to be smaller */
-.header-actions button {
-    width: auto; 
-    margin-top: 0;
-    padding: 8px 16px;
-}
-
-h2 {
-    text-align: center;
     margin-bottom: 20px;
 }
 
-input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    box-sizing: border-box; /* Fixes padding overflow */
+.actions {
+    display: flex;
+    gap: 12px;
 }
 
-button {
-    padding: 12px;
+/* INPUT FIELDS */
+input {
     width: 100%;
-    margin-top: 10px;
+    padding: 12px 14px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.2);
+}
+
+/* BUTTON BASE */
+button {
     border: none;
-    border-radius: 10px;
-    background: linear-gradient(to right,#667eea,#764ba2);
-    color: white;
+    border-radius: 14px;
+    padding: 10px 18px;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease;
 }
 
-button:hover {
+/* DARK MODE BUTTON */
+.theme-toggle {
+    background: #111827;
+    color: white;
+}
+
+body.dark .theme-toggle {
+    background: #facc15;
+    color: black;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn {
+    background: #ef4444;
+    color: white;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+}
+
+/* INPUT + ADD BUTTON WRAPPER */
+.habit-input-wrapper {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.habit-input-wrapper input {
+    flex: 1;
+}
+
+/* ADD BUTTON */
+.add-btn {
+    width: 55px;
+    font-size: 20px;
+    font-weight: bold;
+    background: linear-gradient(to right,#667eea,#764ba2);
+    color: white;
+}
+
+.add-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-.hidden {
-    display: none;
-}
-
-/* Goal (formerly Habit) Styling */
-.goal {
+/* TASK CARD */
+.habit {
     background: #f8fafc;
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 15px;
-    transition: 0.3s;
+    padding: 16px;
+    margin-top: 18px;
+    border-radius: 18px;
+    transition: 0.3s ease;
 }
 
-.dark .goal {
+body.dark .habit {
     background: #334155;
 }
 
-.goal:hover {
-    transform: translateY(-3px);
+.habit:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
+/* DAYS CIRCLE ROW */
 .days {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
+/* DAY BUTTON */
 .day {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: #e2e8f0;
     text-align: center;
-    line-height: 32px;
+    line-height: 34px;
     font-size: 13px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.2s ease;
+}
+
+.day:hover {
+    transform: scale(1.1);
 }
 
 .day.completed {
     background: #22c55e;
     color: white;
-    box-shadow: 0 0 10px #22c55e;
+    box-shadow: 0 0 12px #22c55e;
 }
 
+/* PROGRESS BAR */
 .progress-bar {
     height: 12px;
     background: #e2e8f0;
     border-radius: 20px;
-    margin-top: 10px;
+    margin-top: 14px;
     overflow: hidden;
 }
 
@@ -148,7 +194,14 @@ button:hover {
     transition: width 0.4s ease;
 }
 
+/* FADE IN ANIMATION */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
